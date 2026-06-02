@@ -1,7 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
-
 const tones = {
   amber: { from: "#1A1407", to: "#0C0C0E", stroke: "#E0A338", glow: "rgba(224,163,56,0.18)" },
   slate: { from: "#0F141A", to: "#0C0C0E", stroke: "#5B7894", glow: "rgba(91,120,148,0.18)" },
@@ -58,13 +54,9 @@ export default function Graphic({ tone = "amber", variant = "skyline", label, cl
         </div>
       )}
 
-      <motion.div
-        className="pointer-events-none absolute inset-0"
+      <div
+        className="graphic-sheen pointer-events-none absolute inset-0"
         style={{ background: `linear-gradient(120deg, transparent 40%, ${c.glow} 50%, transparent 60%)` }}
-        initial={{ x: "-100%" }}
-        whileInView={{ x: "100%" }}
-        viewport={{ once: true }}
-        transition={{ duration: 1.4, ease: "easeInOut", delay: 0.2 }}
       />
     </div>
   );

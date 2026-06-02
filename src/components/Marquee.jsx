@@ -1,5 +1,3 @@
-"use client";
-
 const items = [
   "General Contractor",
   "Design & Build",
