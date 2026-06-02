@@ -1,18 +1,14 @@
-"use client";
+// Komponen UI berbasis CSS (server component) — tidak ada Framer Motion,
+// sehingga konten SELALU ter-render & terlihat tanpa menunggu hydration.
 
-import { motion } from "framer-motion";
-
-export function Reveal({ children, delay = 0, y = 28, className = "" }) {
+export function Reveal({ children, delay = 0, className = "" }) {
   return (
-    <motion.div
-      className={className}
-      initial={{ opacity: 0, y }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }}
+    <div
+      className={`reveal ${className}`}
+      style={delay ? { animationDelay: `${delay}s` } : undefined}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }
 
@@ -59,11 +55,7 @@ export function PageHero({ eyebrow, title, intro }) {
       <div className="absolute inset-0 blueprint opacity-30" />
       <div className="absolute -right-40 top-0 h-[420px] w-[420px] rounded-full bg-amber/10 blur-[130px]" />
       <div className="shell relative py-20 lg:py-28">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-        >
+        <div className="reveal">
           <Eyebrow>{eyebrow}</Eyebrow>
           <h1 className="mt-6 max-w-4xl font-display text-4xl font-extrabold leading-[1.04] tracking-tight text-bone sm:text-5xl lg:text-6xl">
             {title}
@@ -73,7 +65,7 @@ export function PageHero({ eyebrow, title, intro }) {
               {intro}
             </p>
           )}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

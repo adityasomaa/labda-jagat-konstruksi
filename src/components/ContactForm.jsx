@@ -98,7 +98,7 @@ export default function ContactForm() {
         ) : (
           <motion.form
             key="form"
-            initial={{ opacity: 0 }}
+            initial={false}
             animate={{ opacity: 1 }}
             onSubmit={handleSubmit}
             className="space-y-5"

@@ -33,15 +33,15 @@ export default function ProjectsGrid() {
       </div>
 
       <motion.div layout className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-        <AnimatePresence mode="popLayout">
+        <AnimatePresence mode="popLayout" initial={false}>
           {filtered.map((p, i) => (
             <motion.article
               key={p.title}
               layout
-              initial={{ opacity: 0, scale: 0.96 }}
+              initial={false}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.96 }}
-              transition={{ duration: 0.4, delay: i * 0.04 }}
+              transition={{ duration: 0.4 }}
               className="group"
             >
               <div className="aspect-[4/5] overflow-hidden rounded-2xl border border-ink-700">
