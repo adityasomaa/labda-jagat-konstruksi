@@ -11,15 +11,17 @@ export const company = {
     "“Labda” berarti tercapai dan mahir, “Jagat” berarti dunia. Sebuah janji: keahlian yang membangun dunia.",
   founder: "I Nyoman Jagat Maya, S.T., M.T.",
   association: "Anggota GAPENSI (Gabungan Pelaksana Konstruksi Indonesia)",
-  address: "Jl. Bukit Sari, Denpasar, Bali, Indonesia",
-  phone: "+62 361 000 000",
-  email: "halo@labdajagatkonstruksi.com",
-  whatsapp: "+62 812 0000 0000",
+  address:
+    "Jl. Bukit Sari Utara No. 18, Padangsambian Kaja, Denpasar Barat, Kota Denpasar, Bali 80117",
+  phone: "0819 3310 8875",
+  email: "labda.jagatkonstruksi@gmail.com",
+  whatsapp: "+62 819 3310 8875",
+  whatsappLink: "https://wa.me/6281933108875",
   hours: "Senin – Jumat, 08.00 – 17.00 WITA",
   socials: [
     { label: "Instagram", href: "#" },
-    { label: "LinkedIn", href: "#" },
-    { label: "WhatsApp", href: "#" },
+    { label: "WhatsApp", href: "https://wa.me/6281933108875" },
+    { label: "Email", href: "mailto:labda.jagatkonstruksi@gmail.com" },
   ],
 };
 

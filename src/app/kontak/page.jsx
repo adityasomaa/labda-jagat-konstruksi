@@ -12,7 +12,7 @@ const details = [
   { label: "Alamat", value: company.address },
   { label: "Telepon", value: company.phone, href: `tel:${company.phone.replace(/\s/g, "")}` },
   { label: "Email", value: company.email, href: `mailto:${company.email}` },
-  { label: "WhatsApp", value: company.whatsapp },
+  { label: "WhatsApp", value: company.whatsapp, href: company.whatsappLink },
   { label: "Jam Operasional", value: company.hours },
 ];
 
