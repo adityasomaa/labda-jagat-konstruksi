@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { company } from "@/data/site";
 
 const serviceOptions = [
   "General Contractor",
@@ -13,6 +14,7 @@ const serviceOptions = [
 
 export default function ContactForm() {
   const [status, setStatus] = useState("idle"); // idle | sending | sent
+  const [waUrl, setWaUrl] = useState(company.whatsappLink);
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -23,12 +25,32 @@ export default function ContactForm() {
 
   const update = (key) => (e) => setForm({ ...form, [key]: e.target.value });
 
+  const buildWaUrl = () => {
+    const lines = [
+      `Halo ${company.name}, saya ingin berkonsultasi.`,
+      "",
+      `Nama: ${form.name}`,
+      `Email: ${form.email}`,
+      form.phone ? `Telepon: ${form.phone}` : null,
+      `Layanan: ${form.service}`,
+      "",
+      "Pesan:",
+      form.message,
+    ].filter((l) => l !== null);
+    return `${company.whatsappLink}?text=${encodeURIComponent(lines.join("\n"))}`;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (status === "sending") return;
     setStatus("sending");
-    // Simulasi pengiriman (belum terhubung ke backend/email).
-    setTimeout(() => setStatus("sent"), 1100);
+    const url = buildWaUrl();
+    setWaUrl(url);
+    // Buka WhatsApp dengan pesan yang sudah terisi.
+    setTimeout(() => {
+      window.open(url, "_blank", "noopener,noreferrer");
+      setStatus("sent");
+    }, 500);
   };
 
   const inputClass =
@@ -48,18 +70,27 @@ export default function ContactForm() {
               ✓
             </div>
             <h3 className="mt-6 font-display text-2xl font-bold text-bone">
-              Terima kasih, {form.name.split(" ")[0] || "Sahabat"}!
+              Mengarahkan ke WhatsApp...
             </h3>
             <p className="mt-3 max-w-sm text-sm text-bone-dim">
-              Pesan Anda telah kami terima. Tim Labda Jagat Konstruksi akan
-              menghubungi Anda dalam 1×24 jam kerja.
+              Terima kasih, {form.name.split(" ")[0] || "Sahabat"}! Pesan Anda
+              telah kami siapkan di WhatsApp. Jika tab tidak terbuka otomatis,
+              gunakan tombol di bawah.
             </p>
+            <a
+              href={waUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary mt-7"
+            >
+              Buka WhatsApp
+            </a>
             <button
               onClick={() => {
                 setForm({ name: "", email: "", phone: "", service: serviceOptions[0], message: "" });
                 setStatus("idle");
               }}
-              className="btn-ghost mt-8"
+              className="mt-4 text-sm font-medium text-bone-muted transition-colors hover:text-amber"
             >
               Kirim pesan lain
             </button>
@@ -132,11 +163,10 @@ export default function ContactForm() {
               disabled={status === "sending"}
               className="btn-primary w-full disabled:opacity-60"
             >
-              {status === "sending" ? "Mengirim..." : "Kirim Pesan"}
+              {status === "sending" ? "Membuka WhatsApp..." : "Kirim via WhatsApp"}
             </button>
             <p className="text-center text-xs text-bone-muted">
-              Formulir demo — belum terhubung ke email. Untuk respons cepat,
-              hubungi kami via WhatsApp.
+              Pesan akan dikirim melalui WhatsApp ke {company.whatsapp}.
             </p>
           </motion.form>
         )}

@@ -11,7 +11,7 @@ export default function Loader() {
     const t = setTimeout(() => {
       setDone(true);
       document.body.style.overflow = "";
-    }, 2200);
+    }, 1500);
     return () => {
       clearTimeout(t);
       document.body.style.overflow = "";
@@ -62,7 +62,7 @@ export default function Loader() {
                 className="h-full bg-amber"
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: 1 }}
-                transition={{ duration: 2, ease: "easeInOut" }}
+                transition={{ duration: 1.4, ease: "easeInOut" }}
                 style={{ transformOrigin: "left" }}
               />
             </div>
